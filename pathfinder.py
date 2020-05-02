@@ -4,6 +4,9 @@ import collections
 
 class Grid():
     def __init__(self, width=5, height=5):
+        """ Class describes squared graph with equally weighted edges. 
+            Has methods of creating walls, start ang goal-points, searching of 
+            the path between start and goal."""
         self.grid = [[0 for _ in range(width)] for _ in range(height)]
         self.height = height-1
         self.width = width-1
@@ -29,6 +32,9 @@ class Grid():
         return vertex not in self.walls 
 
     def find_neighbours(self):
+        # Creating dict with every vertex coordinates as keys, and list of 
+        # it's neighbours coordinates as values.
+        # Exceptions: walls and neighbours with coordinates that outside the grid.
         x=0
         for row in self.grid:
             y=0
@@ -41,7 +47,8 @@ class Grid():
             x+=1 
 
     def breadth_first_search(self):
-        # breadth search algorithm for searching ways from start pointt to all other points on map.
+        # Breadth first search algorithm for searching ways from start point 
+        # to every existing point on map, except walls.
         self.find_neighbours()
 
         frontier = collections.deque()
@@ -58,7 +65,8 @@ class Grid():
         return self.came_from
 
     def reconstruct_path(self):
-        # reconstracttion of the path from goal-pointt to the start-point
+        # Reconstraction of the path between start and goal points. 
+        # Path represented as a list of coordinates, in order from start-point to goal-point.
         current = self.goal
         self.path = []
         while current != self.start:
@@ -69,7 +77,7 @@ class Grid():
         return self.path
 
     
-    def show_path_ongrid(self):
+    def show_path_on_grid(self):
         for each in graph.path:
             x, y = each
             self.grid[x][y]=1
@@ -98,4 +106,4 @@ graph.set_start_goal(start=(0, 0), goal=(0, 4))
 
 graph.breadth_first_search()
 graph.reconstruct_path()
-print(graph.show_path_ongrid())
+print(graph.show_path_on_grid())
