@@ -58,6 +58,11 @@ class Grid():
 
         while not len(frontier) == 0:
             current = frontier.popleft()
+
+            # Stops search when goal-point is found.
+            if current == self.goal:
+                break
+
             for next in self.neighbours[current]:
                 if next not in self.came_from:
                     frontier.append(next)
@@ -78,13 +83,17 @@ class Grid():
 
     
     def show_path_on_grid(self):
+        for k, v in self.came_from.items():
+            x, y = k
+            self.grid[y][x]="@" # attended vertexes
+        
         for each in graph.path:
             x, y = each
-            self.grid[x][y]=1
+            self.grid[y][x]=1 # path vertexes
         
         for each in graph.walls:
             x, y = each
-            self.grid[x][y]="#"
+            self.grid[y][x]="#" # walls vertexes
             
         string = ""
         for row in self.grid:
