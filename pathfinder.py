@@ -85,7 +85,7 @@ class Grid():
     def show_path_on_grid(self):
         for k, v in self.came_from.items():
             x, y = k
-            self.grid[y][x]="@" # attended vertexes
+            self.grid[y][x]=0 # attended vertexes
         
         for each in graph.path:
             x, y = each
@@ -93,7 +93,7 @@ class Grid():
         
         for each in graph.walls:
             x, y = each
-            self.grid[y][x]="#" # walls vertexes
+            self.grid[y][x]=2 # walls vertexes
             
         string = ""
         for row in self.grid:
@@ -106,12 +106,31 @@ class Grid():
 
 
 
-graph = Grid()
+graph = Grid(width=20, height=20)
 graph.create_wall(0, 3)
 graph.create_wall(1, 3)
 graph.create_wall(2, 3)
 graph.create_wall(3, 3)
-graph.set_start_goal(start=(0, 0), goal=(0, 4))
+graph.create_wall(9, 0)
+graph.create_wall(9, 1)
+graph.create_wall(9, 2)
+graph.create_wall(9, 3)
+graph.create_wall(9, 4)
+graph.create_wall(9, 5)
+graph.create_wall(9, 6)
+graph.create_wall(9, 7)
+graph.create_wall(9, 8)
+graph.create_wall(9, 9)
+graph.create_wall(9, 10)
+graph.create_wall(8, 10)
+graph.create_wall(7, 10)
+graph.create_wall(6, 10)
+graph.create_wall(5, 10)
+graph.create_wall(4, 10)
+graph.create_wall(3, 10)
+graph.create_wall(2, 10)
+
+graph.set_start_goal(start=(0, 0), goal=(19, 19))
 
 graph.breadth_first_search()
 graph.reconstruct_path()
