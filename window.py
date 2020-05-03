@@ -3,13 +3,15 @@ from pathfinder import *
 
 # Set colors
 BLACK = (0, 0, 0) # background
-GREEN = (27, 143, 23) # available for use cells
-BROWN = (99, 43, 0) # path cells
-GRAY = (107, 102, 97) # wall cells
+GREEN = (144, 190, 109) # available for use cells
+BROWN = (154, 140, 152) # path cells
+GRAY = (87, 117, 144) # wall cells
+BLUE = (224, 251, 252)
+
  
 # Set the margin between cells
-WIDTH = 20
-HEIGHT = 20
+WIDTH = 15
+HEIGHT = 15
 # Set the margin between each cell
 MARGIN = 1
  
@@ -19,7 +21,8 @@ grid = finder.map.grid
 pygame.init()
  
 # Calculation of creen size
-WINDOW_SIZE = [(len(grid)*WIDTH)+(len(grid)*MARGIN), (len(grid)*HEIGHT)+(len(grid)*MARGIN)]
+#WINDOW_SIZE = [(len(grid)*WIDTH)+(len(grid)*MARGIN), (len(grid)*HEIGHT)+(len(grid)*MARGIN)]
+WINDOW_SIZE = [800, 640]
 screen = pygame.display.set_mode(WINDOW_SIZE)
  
 # Set title of screen
@@ -39,29 +42,26 @@ while not exit:
             exit = True  # Flag that we are exit so we exit this loop
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             draw_walls = 1
-            # User clicks the mouse. Get the position
             pos = pygame.mouse.get_pos()
-            # Change the x/y screen coordinates to grid coordinates
-            column = pos[0] // (WIDTH + MARGIN)
-            row = pos[1] // (HEIGHT + MARGIN)
-            # Set that location to one
-            grid[row][column] = 2
-            print("Click ", pos, "Grid coordinates: ", row, column)
+            x, y = pos[1] // (HEIGHT + MARGIN), pos[0] // (WIDTH + MARGIN)
+            grid[x][y] = 2
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             draw_walls = 0
         elif event.type == pygame.MOUSEMOTION and draw_walls == 1:
-            # User clicks the mouse. Get the position
             pos = pygame.mouse.get_pos()
-            # Change the x/y screen coordinates to grid coordinates
-            column = pos[0] // (WIDTH + MARGIN)
-            row = pos[1] // (HEIGHT + MARGIN)
-            # Set that location to one
-            grid[row][column] = 2
-            print("Click ", pos, "Grid coordinates: ", row, column)
+            x, y = pos[1] // (HEIGHT + MARGIN), pos[0] // (WIDTH + MARGIN)
+            grid[x][y] = 2
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+            pos = pygame.mouse.get_pos()
+            x, y = pos[1] // (HEIGHT + MARGIN), pos[0] // (WIDTH + MARGIN)
+            grid[x][y] = 0
+
+
+        
 
  
     # Set the screen background
-    screen.fill(BLACK)
+    screen.fill(BLUE)
  
     # Draw the grid
     for row in range(len(grid)):

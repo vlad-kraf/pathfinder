@@ -113,7 +113,7 @@ class BreadthFirstSearch():
         return string 
 
 
-grid = Map(width=20, height=20)
+grid = Map(width=40, height=40)
 grid.create_wall(0, 3)
 grid.create_wall(1, 3)
 grid.create_wall(2, 3)
