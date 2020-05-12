@@ -9,6 +9,7 @@ GREEN = (144, 190, 109) # available for use cells
 BROWN = (154, 140, 152) # path cells
 GRAY = (87, 117, 144) # wall cells
 BLUE = (224, 251, 252)
+RED = (201, 10, 10)
 
  
 # Set the margin between cells
@@ -18,7 +19,7 @@ HEIGHT = 15
 MARGIN = 1
  
 
-grid = finder.map.grid
+grid = finder.map_.grid
 
 pygame.init()
  
@@ -76,6 +77,12 @@ while not exit:
                 color = BROWN
             if grid[row][column] == 2:
                 color = GRAY
+            if grid[row][column] == 3:
+                color = RED
+            if grid[row][column] == 4:
+                color = RED
+            if grid[row][column] == 5:
+                color = BLACK
             pygame.draw.rect(screen,
                              color,
                              [(MARGIN + WIDTH) * column + MARGIN,
