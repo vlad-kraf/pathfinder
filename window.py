@@ -1,4 +1,6 @@
 import pygame
+import sys
+
 from pathfinder import *
 
 # Set colors
@@ -24,6 +26,9 @@ pygame.init()
 #WINDOW_SIZE = [(len(grid)*WIDTH)+(len(grid)*MARGIN), (len(grid)*HEIGHT)+(len(grid)*MARGIN)]
 WINDOW_SIZE = [800, 640]
 screen = pygame.display.set_mode(WINDOW_SIZE)
+
+#controll buttons
+button = pygame.Rect(670, 30, 90, 30)
  
 # Set title of screen
 pygame.display.set_caption("Pathfinder")
@@ -78,6 +83,8 @@ while not exit:
                               WIDTH,
                               HEIGHT])
  
+    pygame.draw.rect(screen, [255, 0, 0], button)  # draw button
+
     # Limit to 60 frames per second
     clock.tick(60)
  
@@ -85,3 +92,4 @@ while not exit:
     pygame.display.flip()
  
 pygame.quit()
+sys.exit

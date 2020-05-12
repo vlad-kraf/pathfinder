@@ -7,7 +7,7 @@ class Map():
     """ Class describes squared map as a graph with equally weighted edges. Grid contains coordinates of every vretex in graph. 
         Has methods for creating map, setting walls, checking map cells on passability"""
     
-    def __init__(self, width=5, height=5):
+    def __init__(self, width=40, height=40):
         self.grid = [[0 for _ in range(width)] for _ in range(height)]
         self.height = height-1
         self.width = width-1
@@ -23,6 +23,11 @@ class Map():
     def is_passable(self, vertex):
         return vertex not in self.walls 
 
+    def set_start_point(self, x, y):
+        pass
+
+    def set_end_point(self, x, y):
+        pass
     
 
 class BreadthFirstSearch():
